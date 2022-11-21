@@ -11,12 +11,29 @@ if (isset($_POST['register'])) {
 		$email = $_POST['email'];
 		$password = $_POST['password'];
 		$confirm_password = $_POST['confirmpassword'];
-		if ($password === $confirm_password) {
-			$query = "INSERT INTO  user (user_Fullname,user_cnic,user_address,user_city,user_contact,user_email,user_password)
+
+
+
+		if (strlen($_POST["password"]) <= '8') {
+			$msg = "Your Password Must Contain At Least 8 Characters!";
+		} elseif (!preg_match("#[0-9]+#", $password)) {
+			$msg = "Your Password Must Contain At Least 1 Number!";
+		} elseif (!preg_match("#[A-Z]+#", $password)) {
+			$msg = "Your Password Must Contain At Least 1 Capital Letter!";
+		} elseif (!preg_match("#[a-z]+#", $password)) {
+			$msg = "Your Password Must Contain At Least 1 Lowercase Letter!";
+		} else if (strlen($_POST["cnic"]) !== '12') {
+			$msg = "Aadhar Number must contain 12 numbers";
+		} else if (strlen($_POST["contact"]) !== '10') {
+			$msg = "Mobile number must be contain 10 numbers";
+		} else {
+			if ($password === $confirm_password) {
+				$query = "INSERT INTO  user (user_Fullname,user_cnic,user_address,user_city,user_contact,user_email,user_password)
 			VALUES ('$name','$cnic','$adress ','$city','$contact','$email','$password')";
-			$results = mysqli_query($connection, $query);
-			if ($results) {
-				$msg = "User Registration Successfull";
+				$results = mysqli_query($connection, $query);
+				if ($results) {
+					$msg = "User Registration Successfull";
+				}
 			}
 		}
 

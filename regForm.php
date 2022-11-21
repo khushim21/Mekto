@@ -25,8 +25,9 @@
                                 <div class="row">
                                     <div class="col-md-12 mb-4">
                                         <div class="for-outline">
-                                            <input type="text" id="" name="cnic" class="form-control form-control-lg"
-                                                placeholder="Aadhar Number" required />
+                                            <input type="text" id="" pattern="[0-9]*" name="cnic"
+                                                class="form-control form-control-lg" placeholder="Aadhar Number"
+                                                required />
                                         </div>
                                     </div>
                                 </div>
@@ -51,16 +52,17 @@
                                 <div class="row">
                                     <div class="col-md-12 mb-4">
                                         <div class="for-outline">
-                                            <input type="text" id="" name="mobile" class="form-control form-control-lg"
-                                                placeholder="Mobile Number" required />
+                                            <input type="text" id="" pattern="[0-9]*" name="mobile"
+                                                class="form-control form-control-lg" placeholder="Mobile Number"
+                                                required />
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 mb-4">
                                         <div class="for-outline">
-                                            <input type="text" id="" name="email" class="form-control form-control-lg"
-                                                placeholder="Email" required />
+                                            <input type="email" id="email" name="email"
+                                                class="form-control form-control-lg" placeholder="Email" required />
                                         </div>
                                     </div>
                                 </div>

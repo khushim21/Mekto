@@ -15,22 +15,35 @@ if (isset($_POST['register'])) {
 		$password = $_POST['password'];
 		$confirm_password = $_POST['confirmpassword'];
 
-		if ($password === $confirm_password) {
-			$image = "";
-			$server_folder = "profilePhoto/";
-			$Server_path = $server_folder . basename($_FILES['photo']['name']);
-			if (move_uploaded_file($_FILES["photo"]["tmp_name"], $Server_path)) {
-				$image = $_FILES['photo']['name'];
-			}
-			$query = "INSERT INTO  professional 
+		if (strlen($_POST["password"]) <= '8') {
+			$msg = "Your Password Must Contain At Least 8 Characters!";
+		} elseif (!preg_match("#[0-9]+#", $password)) {
+			$msg = "Your Password Must Contain At Least 1 Number!";
+		} elseif (!preg_match("#[A-Z]+#", $password)) {
+			$msg = "Your Password Must Contain At Least 1 Capital Letter!";
+		} elseif (!preg_match("#[a-z]+#", $password)) {
+			$msg = "Your Password Must Contain At Least 1 Lowercase Letter!";
+		} else if (strlen($_POST["cnic"]) !== '12') {
+			$msg = "Aadhar Number must contain 12 numbers";
+		} else if (strlen($_POST["contact"]) !== '10') {
+			$msg = "Mobile number must be contain 10 numbers";
+		} else {
+			if ($password === $confirm_password) {
+				$image = "";
+				$server_folder = "profilePhoto/";
+				$Server_path = $server_folder . basename($_FILES['photo']['name']);
+				if (move_uploaded_file($_FILES["photo"]["tmp_name"], $Server_path)) {
+					$image = $_FILES['photo']['name'];
+				}
+				$query = "INSERT INTO  professional 
 			(mechanic_Fullname,mechanic_cnic,mechanic_address,mechanic_city,machanic_city_area,mechanic_contact,mechanic_email,experience,rate_per_hour,password,status,profile_photo)VALUES 
 			('$name','$cnic','$adress ','$city','$area','$contact','$email','$experience','$hourlyrate','$password','Active','$image')";
-			$results = mysqli_query($connection, $query);
-			if ($results) {
-				$msg = "Mechanic registered successfully!";
+				$results = mysqli_query($connection, $query);
+				if ($results) {
+					$msg = "Mechanic registered successfully!";
+				}
 			}
 		}
-
 
 	} else {
 		$msg = "Fill all input fields";
