@@ -25,7 +25,7 @@ if (isset($_POST['register'])) {
 			$msg = "Your Password Must Contain At Least 1 Lowercase Letter!";
 		} else if (strlen($_POST["cnic"]) !== '12') {
 			$msg = "Aadhar Number must contain 12 numbers";
-		} else if (strlen($_POST["contact"]) !== '10') {
+		} else if (strlen($_POST["mobile"]) !== '10') {
 			$msg = "Mobile number must be contain 10 numbers";
 		} else {
 			if ($password === $confirm_password) {
